@@ -1,0 +1,33 @@
+﻿@using CV_Udemy.Models.Entity
+@using PagedList
+@using PagedList.Mvc
+
+@model IPagedList<TBL_Hobby>
+
+<div class="resume-section-content">
+    <h2 class="mb-5">İçeriklerim</h2>
+    <h5 style="color: #827e79; ">Toplam İçerik Sayısı: @ViewBag.d</h5>
+
+    <ul class="fa-ul mb-0">
+        @foreach (var hobby in Model)
+        {
+            @*<p class="font-weight-bold">@hobby.Description</p>*@
+            @*<p class="mb-0">@hobby.Description2</p>*@
+
+            <li>
+                <a href="@hobby.Description2">
+                    <span class="fa-li">
+                        <i class="fa-solid fa-share fa"></i>
+                    </span>
+                    - @hobby.Description
+                    <i class="fa-regular fa-thought-bubble"></i>
+                </a>
+            </li>
+        }
+    </ul>
+    <p class="size-32">
+        @Html.PagedListPager((IPagedList)Model, number => Url.Action("Index", "Default", new { number }))
+    </p>
+</div>
+
+
